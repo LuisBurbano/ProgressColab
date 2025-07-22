@@ -13,7 +13,7 @@ http://localhost:3000/api/1.0/
 
 ### 🧍 Crear Usuario
 
-## URI de creacipon de usuario
+## URI de creación de usuario
 ```
 http://localhost:3000/api/1.0/usuario/crearUsuario
 ```
@@ -33,7 +33,7 @@ http://localhost:3000/api/1.0/usuario/crearUsuario
 
 ### 🔐 Login
 
-## URI de creacipon de usuario
+## URI de inicio de sesión (usar en login de app)
 ```
 http://localhost:3000/api/1.0/auth/login
 ```
@@ -51,7 +51,7 @@ http://localhost:3000/api/1.0/auth/login
 
 ### 📈 Crear Avance
 
-## URI de creacipon de usuario
+## URI de creaciónn de un avance (tarea de un usuario)
 ```
 http://localhost:3000/api/1.0/usuario/crearAvance
 ```
