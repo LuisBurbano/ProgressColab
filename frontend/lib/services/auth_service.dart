@@ -36,7 +36,7 @@ class AuthService {
   static Future<Map<String, dynamic>> register(Map<String, dynamic> userData) async {
     try {
       final response = await http.post(
-        Uri.parse('${ApiService.baseUrl}/usuario/crearUsuario'),
+        Uri.parse('${ApiService.baseUrl}/usuario'),
         headers: ApiService.headers,
         body: jsonEncode(userData),
       );

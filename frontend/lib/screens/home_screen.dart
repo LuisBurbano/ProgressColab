@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/auth_service.dart';
+import '../services/notification_service.dart';
 import 'login_screen.dart';
 import 'test_connection_screen.dart';
+import 'registro_avance_screen.dart';
+import 'panel_colaborativo_screen.dart';
+import 'reportes_semanal_screen.dart';
+import 'alertas_notificaciones_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadUser();
+    _initializeNotifications();
   }
 
   Future<void> _loadUser() async {
@@ -25,6 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _user = user;
     });
+  }
+
+  Future<void> _initializeNotifications() async {
+    await NotificationService.initialize();
+    await NotificationService.requestPermissions();
   }
 
   Future<void> _logout() async {
@@ -113,50 +124,50 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSpacing: 15,
                     children: [
                       _buildOptionCard(
-                        icon: Icons.person,
-                        title: 'Usuarios',
-                        subtitle: 'Gestionar usuarios',
-                        color: Colors.blue,
-                        onTap: () {
-                          // TODO: Navegar a pantalla de usuarios
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Funcionalidad en desarrollo')),
-                          );
-                        },
-                      ),
-                      _buildOptionCard(
-                        icon: Icons.trending_up,
-                        title: 'Avances',
-                        subtitle: 'Ver progresos',
+                        icon: Icons.add_circle,
+                        title: 'Registro de Avance',
+                        subtitle: 'Nuevo progreso diario',
                         color: Colors.green,
                         onTap: () {
-                          // TODO: Navegar a pantalla de avances
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Funcionalidad en desarrollo')),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const RegistroAvanceScreen()),
                           );
                         },
                       ),
                       _buildOptionCard(
-                        icon: Icons.add_circle,
-                        title: 'Crear Avance',
-                        subtitle: 'Nuevo progreso',
-                        color: Colors.orange,
+                        icon: Icons.dashboard,
+                        title: 'Panel Colaborativo',
+                        subtitle: 'Estado del equipo',
+                        color: const Color(0xFF3498db),
                         onTap: () {
-                          // TODO: Navegar a pantalla de crear avance
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Funcionalidad en desarrollo')),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const PanelColaborativoScreen()),
                           );
                         },
                       ),
                       _buildOptionCard(
-                        icon: Icons.settings,
-                        title: 'Configuración',
-                        subtitle: 'Ajustes',
-                        color: Colors.purple,
+                        icon: Icons.assessment,
+                        title: 'Reportes Semanales',
+                        subtitle: 'Estadísticas y análisis',
+                        color: const Color(0xFF9b59b6),
                         onTap: () {
-                          // TODO: Navegar a pantalla de configuración
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Funcionalidad en desarrollo')),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ReportesSemanalScreen()),
+                          );
+                        },
+                      ),
+                      _buildOptionCard(
+                        icon: Icons.notifications_active,
+                        title: 'Alertas',
+                        subtitle: 'Notificaciones del equipo',
+                        color: const Color(0xFFe74c3c),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const AlertasNotificacionesScreen()),
                           );
                         },
                       ),

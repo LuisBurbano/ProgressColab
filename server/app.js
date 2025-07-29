@@ -4,6 +4,8 @@ const cors = require('cors');
 const http = require('http');
 require('./config/firebase'); // Firebase se inicializa aquí
 
+// Inicializar tareas programadas
+const TareasProgramadasService = require('./app/services/tareasProgramadas');
 
 const app = express();
 const server = http.createServer(app); // Crear servidor HTTP
@@ -18,4 +20,7 @@ app.use('/api/1.0', require('./app/routes'));
 
 server.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://${HOST}:${PORT}`);
+  
+  // Inicializar tareas programadas después de que el servidor esté listo
+  TareasProgramadasService.inicializar();
 });

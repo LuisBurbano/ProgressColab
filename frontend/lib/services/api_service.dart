@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
   // Para emulador Android (cambia a tu IP local)
-  static const String baseUrl = 'http://192.168.100.57:3000/api/1.0';
+  static const String baseUrl = 'http://192.168.18.14:3000/api/1.0';
   
   // Para iOS Simulator
   // static const String baseUrl = 'http://localhost:3000/api/1.0';

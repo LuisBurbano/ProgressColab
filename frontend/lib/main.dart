@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'services/auth_service.dart';
+import 'services/notification_service.dart';
+import 'services/background_task_service.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Inicializar servicios
+  await NotificationService.initialize();
+  await BackgroundTaskService.initialize();
+  
   runApp(const MyApp());
 }
 
@@ -45,6 +53,12 @@ class _AuthWrapperState extends State<AuthWrapper> {
   Future<void> _checkAuthStatus() async {
     try {
       final isLoggedIn = await AuthService.isLoggedIn();
+      if (isLoggedIn) {
+        // Programar tareas en segundo plano si el usuario está logueado
+        await BackgroundTaskService.scheduleInactivityCheck();
+        await BackgroundTaskService.scheduleDailyReminders();
+      }
+      
       setState(() {
         _isLoggedIn = isLoggedIn;
         _isLoading = false;

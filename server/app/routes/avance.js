@@ -5,12 +5,14 @@ const {
   listarAvances,
   listarAvancesPorUsuario,
   actualizarAvance,
-  eliminarAvance
+  eliminarAvance,
+  obtenerEstadoActividad
 } = require('../controllers/avance');
 
-router.post('/crearAvance', crearAvance);              // Crear avance
+router.post('/', crearAvance);                          // Crear avance
 router.get('/', listarAvances);                        // Listar todos los avances
 router.get('/usuario/:usuarioId', listarAvancesPorUsuario); // Avances de un usuario
+router.get('/estado-actividad', obtenerEstadoActividad); // Estado de todos los usuarios
 router.patch('/:id', actualizarAvance);                // Actualizar un avance
 router.delete('/:id', eliminarAvance);                 // Eliminar un avance
 

@@ -6,7 +6,7 @@ class UserService {
   static Future<Map<String, dynamic>> createUser(Map<String, dynamic> userData) async {
     try {
       final response = await http.post(
-        Uri.parse('${ApiService.baseUrl}/usuario/crearUsuario'),
+        Uri.parse('${ApiService.baseUrl}/usuario'),
         headers: await ApiService.authHeaders,
         body: jsonEncode(userData),
       );
@@ -24,7 +24,7 @@ class UserService {
   static Future<List<Map<String, dynamic>>> getUsers() async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/usuario/'),
+        Uri.parse('${ApiService.baseUrl}/usuario'),
         headers: await ApiService.authHeaders,
       );
 
@@ -42,7 +42,7 @@ class UserService {
   static Future<Map<String, dynamic>> getUserById(String id) async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/usuario/id/$id'),
+        Uri.parse('${ApiService.baseUrl}/usuario/$id'),
         headers: await ApiService.authHeaders,
       );
 
